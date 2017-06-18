@@ -1,4 +1,4 @@
-package main
+package ex01
 
 import(
 	"testing"
@@ -11,6 +11,3 @@ func TestHello(t *testing.T) {
 		t.Fatalf("Expected %s but got %s", expectedResult, result)
 	}
 }
-
-
-
