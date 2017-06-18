@@ -27,4 +27,6 @@ func main() {
 	if data, ok := x["firstname"]; ok {
 		fmt.Println(data, ok)
 	}
+
+	delete()
 }
