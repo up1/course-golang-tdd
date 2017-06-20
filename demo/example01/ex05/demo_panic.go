@@ -2,11 +2,13 @@ package main
 
 import "fmt"
 
+func errorHappen() {
+	str := recover()
+	fmt.Println(str)
+}
+
 func f() {
-	defer func(){
-		str := recover()
-		fmt.Println(str)
-	}()
+	defer errorHappen()
 	x := []int{1, 2, 3}
 	fmt.Println(x[10])
 }

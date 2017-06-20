@@ -40,10 +40,10 @@ func main() {
 	regHandler := new(RegexpHandler)
 
 	regHandler.HandleFunc("/todo/$", "GET", ListOfTODO)
-	regHandler.HandleFunc("/todo$", "POST", CreateTOFO)
-	regHandler.HandleFunc("/todo/[0-9]$", "GET", GetTODOByID)
-	regHandler.HandleFunc("/todo/[0-9]$", "PUT", UpdateTODOByID)
-	regHandler.HandleFunc("/todo/[0-9]$", "DELETE", DeleteTODOByID)
+	regHandler.HandleFunc("/todo/$", "POST", CreateTOFO)
+	regHandler.HandleFunc("/todo/[0-9]+$", "GET", GetTODOByID)
+	regHandler.HandleFunc("/todo/[0-9]+$", "PUT", UpdateTODOByID)
+	regHandler.HandleFunc("/todo/[0-9]+$", "DELETE", DeleteTODOByID)
 
 	http.ListenAndServe(":8080", nil)
 }
