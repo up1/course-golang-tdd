@@ -17,10 +17,6 @@ type RegexpHandler struct {
 	routes []*route
 }
 
-type RegexpHandler2 struct {
-	routes []*route
-}
-
 func (h *RegexpHandler) Handler(pattern *regexp.Regexp, verb string, handler http.Handler) {
 	h.routes = append(h.routes, &route{pattern, verb, handler})
 }
@@ -47,12 +43,12 @@ func main() {
 	regHandler := new(RegexpHandler)
 
 	regHandler.HandleFunc("/todo/$", "GET", server.listOfTODO)
-	//regHandler.HandleFunc("/todo/$", "POST", server.createTODO)
-	//regHandler.HandleFunc("/todo/[0-9]+$", "GET", GetTODOByID)
-	//regHandler.HandleFunc("/todo/[0-9]+$", "PUT", UpdateTODOByID)
-	//regHandler.HandleFunc("/todo/[0-9]+$", "DELETE", DeleteTODOByID)
+	regHandler.HandleFunc("/todo/$", "POST", server.createTODO)
+	//regHandler.HandleFunc("/todo/[0-9]$", "GET", GetTODOByID)
+	//regHandler.HandleFunc("/todo/[0-9]$", "PUT", UpdateTODOByID)
+	//regHandler.HandleFunc("/todo/[0-9]$", "DELETE", DeleteTODOByID)
 
-	//regHandler.HandleFunc("/", "GET", server.hello)
+	regHandler.HandleFunc("/", "GET", server.hello)
 
 	http.ListenAndServe(":8080", regHandler)
 }
@@ -81,6 +77,30 @@ func (s Server) listOfTODO(res http.ResponseWriter, req *http.Request) {
 	//Send JSON response
 	res.Header().Set("Content-Type", "application/json; charset=utf-8")
 	payload, err := json.Marshal(todos)
+	if err != nil {
+		http.Error(res, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprintf(res, string(payload))
+}
+
+func (s Server) createTODO(res http.ResponseWriter, req *http.Request) {
+	newTodo := &Todo{}
+	decoder := json.NewDecoder(req.Body)
+	err := decoder.Decode(&newTodo)
+	if err != nil {
+		fmt.Println("Error to decode json ", err)
+		res.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	//Create new TODO
+	fmt.Println(newTodo)
+
+	//Send JSON response
+	res.Header().Set("Content-Type", "application/json; charset=utf-8")
+	payload, err := json.Marshal(newTodo)
 	if err != nil {
 		http.Error(res, err.Error(), http.StatusInternalServerError)
 		return
