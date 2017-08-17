@@ -1,6 +1,6 @@
 # course-golang-tdd
 
-Resources of course TDD with Golang
+### Course TDD with Golang
 
 * Basic of Go
 * Basic of TDD
@@ -8,3 +8,9 @@ Resources of course TDD with Golang
 * Building REST APIs with Go
 * Testing REST APIs with Silk
 
+
+
+### Resources
+* https://github.com/golang/go
+* https://github.com/avelino/awesome-go
+* https://github.com/golang/go/wiki/SliceTricks
