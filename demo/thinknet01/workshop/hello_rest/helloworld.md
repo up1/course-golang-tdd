@@ -5,7 +5,7 @@
 Hello world API na
 sdfsdf
 
-===
+---
 
 ### Success response
 ต้องสำเร็จนะ
@@ -20,7 +20,7 @@ Hello world.
 Fail API na
 sdfsdf
 
-===
+---
 
 ### Fail response
 ต้อง fail นะ
