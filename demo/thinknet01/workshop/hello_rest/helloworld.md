@@ -15,3 +15,18 @@ sdfsdf
 ```
 Hello world.
 ```
+
+## GET /fail
+Fail API na
+sdfsdf
+
+===
+
+### Fail response
+ต้อง fail นะ
+
+* Status: 200
+
+```
+Fail na
+```
